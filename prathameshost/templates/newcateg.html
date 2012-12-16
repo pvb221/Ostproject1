@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+Choose a category : <br/>
+<form name = "categorySelection" onsubmit = "return checkCategSelectedForVote()" action = "/viewitemsforvote">
+{% for result in results %}
+	<input type = "radio" name = "selectedcategory" value = "{{ result.categoryname }}/{{ result.username }}">{{ result.categoryname }}</input><br/>
+{% endfor %}
+<br/>
+	<input type = "submit" name = "submitCategory" value = "Explore this Category" />
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center><i>WELCOME TO THE VOTING CENTER</i></center>
+<br/>
+<br/>
+Hello {{ user }} <br/>
+What would you like to do today?? <br/>
+<form name = "homepageform" action = "/option">
+<table name = "starttable" cellpadding = "10" border = "1" cellspacing = "10">
+<tr>
+<td> 
+<b>1.CREATE A NEW CATEGORY</b>
+</td>
+<td>
+<input type = "radio" name = "startoption" value = "Create" checked >Create a new category</input>
+</td>
+</tr>
+<br/>
+<br/>
+<tr>
+<td>
+<b>2.EDIT EXISTING CATEGORIES. INCLUDES ADDING, DELETING ITEMS FROM CATEGORIES<br/>
+ALSO RENAMING,DELETING AND ADDING AN EXPIRY DATE TO A CATEGORY </b>
+</td>
+<td>
+<input type = "radio" name = "startoption" value = "Item">Edit your categories</input>
+</td>
+<br/>
+<br/>
+<tr>
+<td>
+<b>3.VOTE OR POST COMMENTS FOR ITEMS IN EXISTING CATEGORIES AND VIEW CURRENT VOTING RESULTS</b><br/>
+</td>
+<td>
+<input type = "radio" name = "startoption" value = "Vote">Vote for an existing category and See the Voting Results</input>
+</td>
+<tr><td></td>
+<td>
+<input type = "submit" name="submitButton" value = "Go" />
+</td>
+</tr>
+</table>
+</form>
+{% endblock %}

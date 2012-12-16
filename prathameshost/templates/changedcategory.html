@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{ user1 }} <br/>
+You edited the {{ category }} Category owned by {{ user1 }}<br/>
+
+{% if rej %}
+	The following items were rejected as they are already present in the category
+	{% for rejitem in rej %}
+		{{ rejitem }}
+	{% endfor %}
+{% endif %}
+<br/>
+	
+Your new items
+{% for item in fresult.items %}
+	<b>{{ item }}</b>
+{% endfor %}
+
+
+<br/>
+{% endblock %}

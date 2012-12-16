@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<b>You can create a new category here. Here are two options</b><br/>
+<br/>
+<table name = "creattable" cellpadding = "10" cellspacing = "5" >
+<tr><td>Option 1 :  Create a Category Manually : </td>
+<td><i>Please note that if the name given already exists then the category wont be created. So be sure to use a unique name</i></td></tr>
+<form name = "categoryform" onsubmit = "return validateCategoryName()" action = "/storenewcategory">
+<tr>
+<td>Enter the category name<br/></td>
+<td><input type = "text" name = "categoryname"></input></td>
+<br/>
+</tr>
+<tr>
+<td>
+Enter all items in the category seperated by commas<br/>
+</td>
+<td>
+<input type = "text" name = "items"></input>
+</td>
+<br/>
+</tr>
+<tr>
+<td></td>
+<td>
+<input type = "submit" name = "submitnewcategory" value = "Create"/>
+</td>
+</tr>
+<br/>
+</form>
+</table>
+
+<br/>
+
+<br/>
+<br/>
+<hr/>
+<table name = "xmltable" cellspacing = "10" cellpadding = "10" >
+<tr>
+<td>Option 2 : Create a category using an XML File.</td>
+<td><i>(i)Please note that use an XML file with a proper format.<br/>(ii) A category will not be created if the XML file is malformed.<br/>(iii) Also if the categoryname already exists then all the items in the XML file will replace the existing items in the category</i></td>
+</tr>
+<form name = "xmlcreate" action = "/uploadxml" enctype = "multipart/form-data" method = "POST" >
+<tr>
+<td>
+Select the XML file that you want to use to create a new category: <br/>
+</td>
+<td>
+<input type = "file" name = "filename" />
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<input type = "submit" value = "Upload" />
+</td>
+</tr>
+</form>
+</table>
+{% endblock %}

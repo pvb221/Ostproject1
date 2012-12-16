@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="">Create a Survey</h1>
+    <form action="{{ url_for('new') }}" method="post" accept-charset="utf-8">
+        {{ form.csrf_token }}
+        <p>
+            <label for="title">{{ form.title.label }}</label>
+
+            {{ form.title|safe }}
+
+        </p>
+        <p>
+            <label for="items">{{ form.items.label }}</label>
+
+            {{ form.items|safe }}
+
+        </p>
+        <p><input type="submit" value="Go!"/></p>
+    </form>
+{% endblock %}

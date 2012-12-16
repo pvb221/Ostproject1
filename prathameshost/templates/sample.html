@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form name = "edititem" onsubmit = "return checkEditCategoryRadioButtons()" action = "/editcateg">
+Choose the category that you want to edit :<br/> 
+{% for category in categ %}
+	<input type = "radio" name = "changecategory" value = "{{ category.categoryname }}">{{ category.categoryname}}</input><br/>
+{% endfor %}
+<br/>
+<input type = "hidden" name = "categuser" value = "{{ user1 }}" />
+<input type = "submit" name = "submiteditcategory" value = "Choose category"/>
+</form>
+
+{% endblock %}
+

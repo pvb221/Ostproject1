@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+You voted for {{ winitem }} over {{ lossitem }} <br/>
+
+Total wins for {{ winitem }} = {{ wins }} <br/>
+Total losses for {{ lossitem }} = {{ lossesn }}<br/>
+{{ fmessage }}
+{% endblock %}
+

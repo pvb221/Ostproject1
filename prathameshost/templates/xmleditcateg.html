@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+You have edited {{ categname }}
+
+The new list of items are : <br/>
+
+{% for item in newlist %}
+{{ item }} <br/>
+{% endfor %}
+
+The set of deleted items are : 
+
+{% for item1 in deletelist %}
+{{ item1 }} <br/>
+
+{% endfor %}
+{% endblock %}

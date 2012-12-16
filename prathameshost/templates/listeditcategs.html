@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+You can make the following changes to your category. Go ahead and choose one and make the required changes<br/>
+<br/>
+<br/>
+<table name = "edittable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>
+<b>ADD ITEMS TO THE CATEGORY</b><br/>
+</td>
+<td>
+(i)Enter all new items that you want to add to this category seperated by commas.<br/>
+(ii)Please note that items already existing in the category will not be added again even if you enter them here<br/>
+</td>
+</tr>
+<form name = "editcategform" onsubmit = "return checkEditCategoryAddItems()" action = "/submitchangecateg">
+<tr>
+<td>
+<input type = "text" name = "addeditems" />
+</td>
+<td>
+<input type = "submit" name = "submitchange" />
+</td>
+</tr>
+<input type = "hidden" name = "categowner" value = "{{ user1 }}" />
+<input type = "hidden" name = "categchange" value = "{{ categ }}" />
+</form>
+</table>
+<br/><br/><hr/>
+<table name = "deletetable" cellspacing = "10" cellpadding = "10">
+<br/>
+<br/>
+<tr>
+<td>
+<b>DELETE EXISTING ITEMS FROM THE LIST</b><br/>
+</td>
+<td>
+Check all items that you want to delete and click
+</td>
+<tr>
+<form name = "deleteitems" onsubmit = "return checkEditCategDeleteItems()" action = "/deleteitems">
+<td>
+{% for item in itemlist%}
+	<input type = "checkbox" name = "deleteitemnames" value="{{ item }}">{{ item}}</input>
+{% endfor %}
+</td>
+<input type = "hidden" name = "deleteuser" value = "{{ user1 }}" />
+<input type = "hidden" name = "deletecateg" value = "{{ categ }}" />
+<td>
+<input type = "submit" name = "submitdelete" value = "Delete items"/>
+</td>
+</form>
+</table>
+<br/>
+<br/>
+<hr/>
+{% set monthlist = [1,2,3,4,5,6,7,8,9,10,11,12] %}
+{% set datelist = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] %}
+{% set yearlist = [2012,2013,2014,2015] %}
+{% set hrlist = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23] %}
+{% set minlist = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59] %}
+<table name = "expirytable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>
+<b>ADD AN EXPIRATION DATE FOR THE CATEGORY</b><br/>
+</td>
+<td>
+Select an appropriate date after which voting will be disabled on the category<br/>
+</td>
+<tr>
+<form name = "dateadd" onsubmit = "return IsValidDate()" action = "/modifydate">
+<td>
+<select name = "Month" id = "monthid">
+  <option>Month</option>
+{% for mon in monthlist %}
+	<option value = "{{ mon }}">{{ mon }}</option>
+{% endfor %}
+</select>
+<select name = "day" id = "dayid">
+  <option>Day</option>
+{% for day in datelist %}
+	<option value = "{{ day }}">{{ day }}</option>
+{% endfor %}
+</select>
+<select name = "year" id = "yearid">
+  <option>Year</option>
+{% for yr in yearlist %}
+	<option value = "{{ yr }}">{{ yr }}</option>
+{% endfor %}
+</select>
+<select name = "hour" id = "hourid">
+  <option>Hour</option>
+{% for hr in hrlist %}
+	<option value = "{{ hr }}">{{ hr }}</option>
+{% endfor %}
+</select>
+<select name = "min" id = "minid">
+  <option>Minutes</option>
+{% for min in minlist %}
+	<option value = "{{ min }}">{{ min }}</option>
+{% endfor %}
+</select>
+
+<br/>
+</td>
+<input type = "hidden" name = "dateuser" value = "{{ user1 }}" />
+<input type = "hidden" name = "datecateg" value = "{{ categ }}" />
+<td>
+<input type = "submit" name = "datesubmit" value = "Change expiration date"/>
+</td>
+</tr>
+</form>
+</table>
+
+<br/>
+<br/>
+<hr/>
+
+<table name = "dcategtable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>
+<b>DELETE THIS CATEGORY</b><br/>
+</td>
+<td>
+Click here to delete this category
+</td>
+</tr>
+<tr>
+<form name = "deletecateg" action = "/deletecategperm">
+<td>
+<input type = "submit" name = "deletecategbutton" value = "Delete Category" />
+</td>
+<input type = "hidden" name = "deletecategname" value = "{{ categ }}" />
+<input type = "hidden" name = "deleteusername" value = "{{ user1 }}" />
+</form>
+</tr>
+</table>
+<br/>
+<br/>
+
+<hr/>
+
+<table name = "renametable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>
+<b>RENAME THIS CATEGORY</b><br/>
+</td>
+<td>
+Enter the new name for the category.<br/> Please note that if the name already exists for some other category then it will not be allowed
+</td>
+</tr>
+<tr>
+<form name = "changecategname" onsubmit = "return isCategNameValid()" action = "/changecategoryname">
+<td>
+<input type = "text" name = "newcategname" />
+</td>
+<td>
+<input type = "submit" name = "submitnewname" value = "Change name" />
+</td>
+<input type = "hidden" name = "changecategname" value = "{{ categ }}" />
+<input type = "hidden" name = "changeusername" value = "{{ user1 }}" />
+</form>
+</tr>
+</table>
+{% endblock %}

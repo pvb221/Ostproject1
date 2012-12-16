@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+USER :   {{ user1 }}  <br/>
+
+CATEGORY   {{ category }}  <br/>
+
+The updated list of items is:
+{% for item in newitemlist %}
+	ITEM  : {{ item }} </b><br/>
+{% endfor %}
+<br/>
+{% endblock %}

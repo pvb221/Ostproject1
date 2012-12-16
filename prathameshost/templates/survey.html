@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> {{ title }} </h1>
+<h4> {{ owner }} </h4>
+
+{% if winner and loser %}
+	<p>You voted {{ winner }} over {{ loser }}</p>
+	<p>
+		Your votes:
+		<ol>
+			<li> {{ winner }}: {{ winner_wins }} wins </li>
+			<li> {{ loser }}: {{ loser_wins }} wins </li>
+		</ol>
+	</p>
+{% endif %}
+
+<form action="/surveys/{{ title }}/{{ owner }}" method="POST">
+	{% set count = 1 %}
+	{% for i in items %}
+		<p>
+			<input type="radio" name="item" value="{{ i }}"> {{ i }} </input>
+			<input type="hidden" name="{{ count }}" value="{{ i }}"></input>
+		</p>
+			{% set count = count + 1 %}
+	{% endfor %}
+	<input type="submit" name="vote" value="Vote!"></input>
+</form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form name="voteoption" onsubmit= "return checkCategoryTypeSelected()" action="/showvotecategs">
+<input type = "radio" name = "owner" value = "mycategory" >Own Category</input>
+<input type = "radio" name = "owner" value = "othercategory">Other User's Categories</input>
+<br/>
+<input type = "submit" name = "submitCategory" value = "Choose category"/>
+</form>
+
+{% endblock %}

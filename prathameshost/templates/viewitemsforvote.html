@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>Voting Page</center>
+<br/>
+<br/>
+
+<table name = "vote table" cellpadding = "10" cellspacing = "10">
+{% if expired=="yes" %}
+<tr>
+Voting on this category cannot be done as the expiry date has passed. See results below.<br/>
+</tr>
+{% elif noofitems==2 %}
+<tr>
+<form name = "voteform" onsubmit = "return checkItemSelectedForVote()" action = "/voted">
+<td>
+{% for item in items %}
+	<input type = "radio" name = "votechoice" value = "{{ item }}" >{{ item }}</input>
+{% endfor %}
+</td>
+<input type = "hidden" name = "itemone" value = "{{ items[0] }}" />
+<input type = "hidden" name = "itemtwo" value = "{{ items[1] }}" />
+<input type = "hidden" name = "categoryowner" value = "{{ user }}" />
+<input type = "hidden" name = "categoryname" value = "{{ category }}">
+<td>
+<input type = "submit" name = "submitvote" value = "Vote"/>
+<input type = "submit" name = "submitvote" value = "Comment" />
+</td>
+</form>
+</tr>
+{% else %}
+<tr>
+There are not enough items in the category for a vote. Try again later.<br/>
+</tr>
+{% endif %}
+</table>
+
+<br/>
+<br/>
+<hr/>
+
+<table name = "resulttable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>View the results for this category. Results will be displayed itemwise alongwith the comments</td>
+<td>
+<form name = "resultform" action = "/viewResults">
+<input type = "submit" name = "seeresults" value = "See Results for this category" />
+<input type = "hidden" name = "resultCategory" value = "{{ category }}" />
+<input type = "hidden" name = "resultUsername" value = "{{ user }}" />
+</form>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+<hr/>
+
+<table name = "xmlexporttable" cellspacing = "10" cellpadding = "10">
+<tr>
+<td>Export XML for this category. A file will be downloaded on your system.</td>
+<td>
+<form name = "exportxmlform" action = "/download">
+<input type = "submit" name = "submitforxml" value = "Export XML for the category" />
+<input type = "hidden" name = "xmlCategory" value = "{{ category }}" />
+<input type = "hidden" name = "xmlowner" value = "{{ user }}" />
+</form>
+</td>
+<tr>
+
+</table>
+
+{% endblock %}
+
+

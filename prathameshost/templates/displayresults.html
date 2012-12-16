@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<span id = "leader" style = "font-size:40px;color:red">LeaderBoard :</span> <br/>
+<br/>
+<table name = "resultstable" border="1">
+<tr>
+<th>Item Name</th>
+<th>No of Wins</th>
+<th>No of Losses</th>
+<th>Comments</th>
+</tr>
+{% for win in winlist %}
+	{% set c = win.split(":") %}
+	<tr>
+	<td>{{ c[0] }}</td>
+	<td>{{ c[1] }}</td>
+	<td>{{ c[2] }}</td>
+	{% set commentlist = c[3].split("###") %}
+	<td>
+	{% for element in commentlist %}
+		{% set clist = element.split("|||") %}
+		{% if clist[0]!= "" %}
+			{{ clist[0] }} said {{ clist[1] }} <br/>
+		{% endif %}
+	{% endfor %}
+	</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}

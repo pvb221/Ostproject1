@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+The new category {{ categ }} has been successfully created
+<br/>
+The list of options are : 
+{% for item in option %}
+	{{ item }} <br/>
+{% endfor%}
+{% endblock %}

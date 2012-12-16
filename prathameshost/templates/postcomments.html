@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<b>Welcome to the comments page</b><br/>
+What do you think about the item {{ item }} in the {{ categ }} category owned by {{ owner }}? <br/> Post your comments below <br/>
+<form name = "commentform" action = "/storecomments">
+<input type = "text" name = "thecomment" / >
+<input type = "hidden" name = "owner" value = "{{ owner }}" />
+<input type = "hidden" name = "cname" value = "{{ categ }}" />
+<input type = "hidden" name = "itemname" value = "{{ item }}" />
+<input type = "submit" name = "comment" value = "Store Comment" />
+</form>
+{% endblock %}
